@@ -1,0 +1,48 @@
+name: 自动化环境依赖检查
+
+on: [push]
+
+jobs:
+  后端依赖安装测试:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 配置 PHP 环境
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          extensions: mbstring, xml, ctype, iconv, mysql, zip
+
+      - name: 执行 Composer 依赖安装
+        run: |
+          cd backend-laravel
+          composer install --no-interaction --no-progress --prefer-dist
+
+  前端依赖与构建测试:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 配置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: 安装 pnpm 工具
+        uses: pnpm/action-setup@v4 v4 版本的 action
+        with:
+          version: 10
+
+      - name: 执行 pnpm 依赖安装
+        run: |
+          cd frontend-pc
+          pnpm install
+
+      - name: 执行前端生产环境构建
+        run: |
+          cd frontend-pc
+          pnpm run build
