@@ -3,7 +3,8 @@ name: 自动化环境依赖检查
 on: [push]
 
 jobs:
-  后端依赖安装测试:
+  laravel-test:
+    name: 后端依赖安装测试
     runs-on: ubuntu-latest
     steps:
       - name: 拉取仓库代码
@@ -21,7 +22,8 @@ jobs:
           cd backend-laravel
           composer install --no-interaction --no-progress --prefer-dist
 
-  前端依赖与构建测试:
+  vue3-test:
+    name: 前端依赖与构建测试
     runs-on: ubuntu-latest
     steps:
       - name: 拉取仓库代码
