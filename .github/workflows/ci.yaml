@@ -35,7 +35,7 @@ jobs:
           node-version: '24'
 
       - name: 安装 pnpm 工具
-        uses: pnpm/action-setup@v4 v4 版本的 action
+        uses: pnpm/action-setup@v4
         with:
           version: 10
 
