@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
@@ -8,10 +7,14 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <h1>Laravel + Vue + DHTML</h1>
+      <h1>毕业设计：慧扫评——评卷辅助系统</h1>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/register">Register</RouterLink>
+        <RouterLink to="/dashboard">Dashboard</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
