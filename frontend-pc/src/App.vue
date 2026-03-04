@@ -7,15 +7,14 @@ import { RouterLink, RouterView } from 'vue-router'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <h1>Laravel + Vue + DHTML</h1>
-      <h1>毕业设计：慧扫评——评卷辅助系统</h1>
+      <h1>毕设：评卷辅助系统</h1>
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/dashboard">Dashboard</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">首页</RouterLink>
+        <RouterLink to="/dashboard">仪表盘</RouterLink>
+        <RouterLink to="/login">登录</RouterLink>
+        <RouterLink to="/register">注册</RouterLink>
+        <RouterLink to="/about">关于</RouterLink>
       </nav>
     </div>
   </header>
@@ -24,65 +23,102 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
+/* 旧的样式（已调整为新的上下结构） */
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  /* max-height: 100vh; */ /* 改为 padding + border */
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  /* display: block; */ /* 改为 flex-shrink */
+  /* margin: 0 auto 2rem; */ /* 改为固定宽高 */
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
 }
 
+/* nav {
+  width: 100%; */ /* 改为 display: flex */
+  /* font-size: 12px; */ /* 改为 14px */
+  /* text-align: center; */ /* 改为 margin-left: auto */
+  /* margin-top: 2rem; */ /* 已移除 */
+/* } */
+
 nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  /* margin: 0; */
+  font-size: 14px;
+  margin-left: auto; /* 靠右对齐 */
+  display: flex;
+  /* gap: 0; */
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+}
+
+.wrapper h1 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.wrapper h1:last-of-type {
+  display: none;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  /* border-left: 1px solid var(--color-border); */ /* 改为 border-right */
+  border-right: 1px solid var(--color-border);
+}
+
+nav a:last-of-type {
+  /* border: 0; */ /* 改为 border-right: none */
+  border-right: none;
 }
 
 nav a.router-link-exact-active {
   color: var(--color-text);
+  font-weight: bold;
 }
 
 nav a.router-link-exact-active:hover {
   background-color: transparent;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+@media (hover: hover) {
+  nav a:hover {
+    background-color: var(--color-background-soft);
+  }
 }
 
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
+@media (max-width: 1023px) {
   header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    flex-direction: column;
+    text-align: center;
   }
 
   .logo {
-    margin: 0 2rem 0 0;
+    margin: 0 auto;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .wrapper {
+    flex-direction: column;
+    width: 100%;
   }
 
   nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
   }
 }
 </style>

@@ -11,7 +11,9 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "axios": "^1.13.6",
+    "dhx-suite": "^9.3.0",
     "vue": "^3.5.29",
     "vue-router": "^5.0.3"
   },
@@ -20,7 +22,10 @@
     "@types/node": "^24.11.0",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vue/tsconfig": "^0.8.1",
+    "autoprefixer": "^10.4.27",
     "npm-run-all2": "^8.0.4",
+    "postcss": "^8.5.8",
+    "tailwindcss": "3.4.17",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-vue-devtools": "^8.0.6",

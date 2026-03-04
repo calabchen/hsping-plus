@@ -21,15 +21,24 @@ a,
   }
 }
 
+
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    /* display: flex; */
+    /* 改为 display: block */
+    /* place-items: center; */
+    /* 已移除 */
+    display: block;
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    /* display: grid; */
+    /* 改为 display: block */
+    /* grid-template-columns: 1fr 1fr; */
+    /* 已移除 */
+    /* padding: 0 2rem; */
+    /* 改为 padding: 0 */
+    display: block;
+    padding: 0;
   }
 }
