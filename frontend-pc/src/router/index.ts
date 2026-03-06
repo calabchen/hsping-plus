@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Register from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Dashboard from '@/views/auth/Dashboard.vue'
+import { authStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,7 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
+      meta: { requiresAuth: true },
     },
     {
       path: '/about',
@@ -36,6 +38,21 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
   ],
+})
+
+router.beforeEach(async (to) => {
+  await authStore.initAuth()
+
+  if ((to.meta?.requiresAuth as boolean) && !authStore.isAuthenticated()) {
+    authStore.showAuthRequiredModal()
+    return false
+  }
+
+  if ((to.name === 'login' || to.name === 'register') && authStore.isAuthenticated()) {
+    return { name: 'dashboard' }
+  }
+
+  return true
 })
 
 export default router
