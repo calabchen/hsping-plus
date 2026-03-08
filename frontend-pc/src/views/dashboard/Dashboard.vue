@@ -8,12 +8,11 @@ const route = useRoute()
 const navigateTo = async (id: string) => {
   if (id === 'profile') {
     router.push('/dashboard/profile')
+  } else if (id === 'classes') {
+    router.push('/dashboard/classes')
   } else if (id === 'logout') {
     await authStore.logout()
     router.push('/')
-  } else if (id === 'classes') {
-    // 待实现：班级管理
-    console.log('班级管理功能待开发')
   } else if (id === 'quizzes') {
     // 待实现：测验管理
     console.log('测验管理功能待开发')
@@ -28,7 +27,12 @@ const navigateTo = async (id: string) => {
       <nav class="sidebar-nav">
         <!-- 顶部导航项 -->
         <div class="nav-top">
-          <a href="#" @click.prevent="navigateTo('classes')" class="nav-item">
+          <a
+            href="#"
+            @click.prevent="navigateTo('classes')"
+            class="nav-item"
+            :class="{ 'active': route.path === '/dashboard/classes' }"
+          >
             班级管理
           </a>
           <a href="#" @click.prevent="navigateTo('quizzes')" class="nav-item">
@@ -55,7 +59,7 @@ const navigateTo = async (id: string) => {
 
     <!-- 右侧内容区 -->
     <main class="main-content">
-      <RouterView v-if="route.path === '/dashboard/profile'" />
+      <RouterView v-if="route.path === '/dashboard/profile' || route.path === '/dashboard/classes'" />
       <div v-else class="content-card content-card-empty">
         <h1>仪表盘</h1>
         <p>欢迎回来，{{ authStore.state.user?.name }}！</p>

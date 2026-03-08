@@ -9,5 +9,5 @@
 - [2025年12月：需求调研期](./dev-logs/2025-12.md) - 确定技术栈。
 
 ## 测试用户
-1. 账号：xiaoming@123.com; 密码：123456;
-2. 账号：lihua@teacher.com; 密码：12345678;
+1. 账号：lihua@teacher.com; 密码：abcdefgh;
+2. 账号：xiaohong@teacher.com; 密码：12345678;

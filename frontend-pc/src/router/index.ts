@@ -4,6 +4,7 @@ import Register from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Dashboard from '@/views/dashboard/Dashboard.vue'
 import Profile from '@/views/dashboard/Profile.vue'
+import Class from '@/views/dashboard/Class.vue'
 import { authStore } from '@/stores/auth'
 
 const router = createRouter({
@@ -29,6 +30,12 @@ const router = createRouter({
       name: 'dashboard',
       component: Dashboard,
       children: [
+        {
+          path: 'classes',
+          name: 'dashboard-classes',
+          component: Class,
+          meta: { requiresAuth: true },
+        },
         {
           path: 'profile',
           name: 'dashboard-profile',

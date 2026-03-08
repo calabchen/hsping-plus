@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -45,4 +47,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/auth/profile/user', [ProfileController::class, 'updateUser']);
     Route::put('/auth/profile/teacher', [ProfileController::class, 'updateTeacher']);
     Route::delete('/auth/account', [ProfileController::class, 'deleteAccount']);
+
+    Route::get('/classes', [ClassController::class, 'index']);
+    Route::get('/classes/{classId}/students', [ClassController::class, 'students']);
+    Route::post('/classes', [ClassController::class, 'store']);
+    Route::put('/classes/{classId}', [ClassController::class, 'update']);
+    Route::delete('/classes/{classId}', [ClassController::class, 'destroy']);
+
+    Route::post('/students', [StudentController::class, 'store']);
+    Route::post('/students/bulk', [StudentController::class, 'bulkStore']);
+    Route::put('/students/{studentId}', [StudentController::class, 'update']);
+    Route::delete('/students/{studentId}', [StudentController::class, 'destroy']);
 });
