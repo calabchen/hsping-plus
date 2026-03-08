@@ -15,15 +15,27 @@ const loading = ref(false)
 const errorMessage = ref('')
 
 const onSubmit = async () => {
+  if (loading.value) {
+    return
+  }
+
   loading.value = true
   errorMessage.value = ''
 
   try {
-    await authStore.login(form.email, form.password)
+    const normalizedEmail = form.email.trim().toLowerCase()
+    await authStore.login(normalizedEmail, form.password)
+    authStore.hideAuthRequiredModal()
     const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/dashboard'
     await router.push(redirect)
-  } catch {
-    errorMessage.value = '登录失败，请检查账户和密码。'
+  } catch (error: any) {
+    if (error.response?.data?.message) {
+      errorMessage.value = error.response.data.message
+    } else if (error.response?.data?.errors?.email?.[0]) {
+      errorMessage.value = error.response.data.errors.email[0]
+    } else {
+      errorMessage.value = '登录失败，请检查账户和密码。'
+    }
   } finally {
     loading.value = false
   }
@@ -53,6 +65,9 @@ const onSubmit = async () => {
 </template>
 
 <style scoped>
+/* ────────────────────────────────────────────────
+   1. 页面容器（整体居中 + 高度占满）
+   ──────────────────────────────────────────────── */
 .auth-page {
   min-height: calc(100vh - 120px);
   display: grid;
@@ -60,6 +75,9 @@ const onSubmit = async () => {
   padding: 24px 16px;
 }
 
+/* ────────────────────────────────────────────────
+   2. 卡片容器（最外层卡片）
+   ──────────────────────────────────────────────── */
 .auth-card {
   width: min(420px, 100%);
   background: #ffffff;
@@ -71,11 +89,17 @@ const onSubmit = async () => {
   box-shadow: 0 10px 30px rgba(30, 41, 59, 0.06);
 }
 
+/* ────────────────────────────────────────────────
+   3. 标题
+   ──────────────────────────────────────────────── */
 .auth-card h1 {
   margin: 0 0 8px;
   font-size: 24px;
 }
 
+/* ────────────────────────────────────────────────
+   4. 表单字段 - 标签 + 提示文字
+   ──────────────────────────────────────────────── */
 .field-label {
   font-size: 14px;
   color: #334155;
@@ -87,6 +111,9 @@ const onSubmit = async () => {
   color: #64748b;
 }
 
+/* ────────────────────────────────────────────────
+   5. 输入框（共用样式）
+   ──────────────────────────────────────────────── */
 input {
   height: 40px;
   border: 1px solid #cbd5e1;
@@ -94,6 +121,9 @@ input {
   padding: 0 12px;
 }
 
+/* ────────────────────────────────────────────────
+   6. 提交按钮状态
+   ──────────────────────────────────────────────── */
 button {
   height: 40px;
   border: none;
@@ -109,6 +139,9 @@ button:disabled {
   opacity: 0.7;
 }
 
+/* ────────────────────────────────────────────────
+   7. 错误提示
+   ──────────────────────────────────────────────── */
 .error-text {
   margin: 2px 0;
   color: #dc2626;

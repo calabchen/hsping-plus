@@ -9,10 +9,10 @@ const closeModal = () => {
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg"/>
 
     <div class="wrapper">
-      <h1>毕设：评卷辅助系统</h1>
+      <h2>毕设：评卷辅助系统</h2>
 
       <nav>
         <RouterLink to="/">首页</RouterLink>
@@ -24,12 +24,12 @@ const closeModal = () => {
     </div>
   </header>
 
-  <RouterView />
+  <RouterView class="router-view-container" /> <!-- 根据当前 URL 路径渲染对应的页面组件 -->
 
+  <!-- 未登录提示弹窗 -->
   <div v-if="authStore.state.authRequiredModalVisible" class="auth-modal-mask" @click.self="closeModal">
     <div class="auth-modal">
       <button class="modal-close" type="button" @click="closeModal" aria-label="关闭弹窗">x</button>
-      <div class="spinner" aria-hidden="true"></div>
       <p>未登录，请先登录或者注册</p>
       <div class="modal-actions">
         <RouterLink class="action-btn" to="/login" @click="closeModal">去登录</RouterLink>
@@ -40,38 +40,23 @@ const closeModal = () => {
 </template>
 
 <style scoped>
-/* 旧的样式（已调整为新的上下结构） */
+/* ────────────────────────────────────────────────
+   1. 全局布局 / 根元素相关（header + 整体结构）
+   ──────────────────────────────────────────────── */
 header {
   line-height: 1.5;
-  /* max-height: 100vh; */ /* 改为 padding + border */
   padding: 1rem 2rem;
   border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex-shrink: 0;
 }
 
 .logo {
-  /* display: block; */ /* 改为 flex-shrink */
-  /* margin: 0 auto 2rem; */ /* 改为固定宽高 */
   flex-shrink: 0;
   width: 60px;
   height: 60px;
-}
-
-/* nav {
-  width: 100%; */ /* 改为 display: flex */
-  /* font-size: 12px; */ /* 改为 14px */
-  /* text-align: center; */ /* 改为 margin-left: auto */
-  /* margin-top: 2rem; */ /* 已移除 */
-/* } */
-
-nav {
-  /* margin: 0; */
-  font-size: 14px;
-  margin-left: auto;
-  display: flex;
-  /* gap: 0; */
 }
 
 .wrapper {
@@ -81,24 +66,22 @@ nav {
   flex: 1;
 }
 
-.wrapper h1 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.wrapper h1:last-of-type {
-  display: none;
+/* ────────────────────────────────────────────────
+   2. 导航栏
+   ──────────────────────────────────────────────── */
+nav {
+  font-size: 14px;
+  margin-left: auto;
+  display: flex;
 }
 
 nav a {
   display: inline-block;
   padding: 0.5rem 1rem;
-  /* border-left: 1px solid var(--color-border); */ /* 改为 border-right */
   border-right: 1px solid var(--color-border);
 }
 
 nav a:last-of-type {
-  /* border: 0; */ /* 改为 border-right: none */
   border-right: none;
 }
 
@@ -117,6 +100,9 @@ nav a.router-link-exact-active:hover {
   }
 }
 
+/* ────────────────────────────────────────────────
+   3. 登录/注册提示弹窗
+   ──────────────────────────────────────────────── */
 .auth-modal-mask {
   position: fixed;
   inset: 0;
@@ -137,6 +123,7 @@ nav a.router-link-exact-active:hover {
   box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2);
 }
 
+/* 关闭按钮 */
 .modal-close {
   position: absolute;
   top: 8px;
@@ -150,19 +137,11 @@ nav a.router-link-exact-active:hover {
 }
 
 .modal-close:hover {
-  color: #0f172a;
+  background-color: #e81123;
+  color: white;
 }
 
-.spinner {
-  width: 30px;
-  height: 30px;
-  margin: 2px auto 12px;
-  border-radius: 50%;
-  border: 3px solid #cbd5e1;
-  border-top-color: #0f766e;
-  animation: spin 0.8s linear infinite;
-}
-
+/* 按钮组 */
 .modal-actions {
   margin-top: 12px;
   display: flex;
@@ -182,12 +161,18 @@ nav a.router-link-exact-active:hover {
   background: #475569;
 }
 
+/* ────────────────────────────────────────────────
+   4. 动画（keyframes）
+   ──────────────────────────────────────────────── */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
+/* ────────────────────────────────────────────────
+   5. 响应式调整（Media Queries）
+   ──────────────────────────────────────────────── */
 @media (max-width: 1023px) {
   header {
     flex-direction: column;

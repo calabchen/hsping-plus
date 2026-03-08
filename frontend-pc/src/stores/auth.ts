@@ -56,9 +56,12 @@ const register = async (name: string, email: string, password: string, passwordC
 }
 
 const logout = async () => {
-  await ensureCsrfCookie()
-  await api.post('/api/auth/logout')
-  state.user = null
+  try {
+    await ensureCsrfCookie()
+    await api.post('/api/auth/logout')
+  } finally {
+    state.user = null
+  }
 }
 
 const isAuthenticated = () => state.user !== null

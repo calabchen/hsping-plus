@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Register from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
-import Dashboard from '@/views/auth/Dashboard.vue'
+import Dashboard from '@/views/dashboard/Dashboard.vue'
+import Profile from '@/views/dashboard/Profile.vue'
 import { authStore } from '@/stores/auth'
 
 const router = createRouter({
@@ -27,6 +28,14 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
+      children: [
+        {
+          path: 'profile',
+          name: 'dashboard-profile',
+          component: Profile,
+          meta: { requiresAuth: true },
+        },
+      ],
       meta: { requiresAuth: true },
     },
     {
@@ -42,6 +51,10 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   await authStore.initAuth()
+
+  if (!(to.meta?.requiresAuth as boolean) && authStore.state.authRequiredModalVisible) {
+    authStore.hideAuthRequiredModal()
+  }
 
   if ((to.meta?.requiresAuth as boolean) && !authStore.isAuthenticated()) {
     authStore.showAuthRequiredModal()

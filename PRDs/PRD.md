@@ -73,10 +73,6 @@
   - user_id int PK AUTO_INCREMENT
   - username varchar(50) UNIQUE
   - password_hash varchar(255)
-  - last_name varchar(50)
-  - first_name varchar(50)
-  - gender enum('男','女')
-  - subject varchar(20)
   - email varchar(100)
   - phone varchar(20)
   - is_active tinyint DEFAULT 1
@@ -89,7 +85,8 @@
   - last_name varchar(50)
   - first_name varchar(50)
   - gender enum('男','女')
-  - teacher_no varchar(20) UNIQUE  （教师工号/标识，可为空或用于打印）
+  - subject varchar(20)
+  - education_stage enum('小学','初中','高中','大学')   （学段，用于标识教师授课阶段）
 
 - **classes**
   - class_id int PK AUTO_INCREMENT
