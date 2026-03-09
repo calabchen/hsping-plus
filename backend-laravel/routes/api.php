@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\QuizController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -58,4 +59,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/students/bulk', [StudentController::class, 'bulkStore']);
     Route::put('/students/{studentId}', [StudentController::class, 'update']);
     Route::delete('/students/{studentId}', [StudentController::class, 'destroy']);
+
+    Route::get('/quizzes', [QuizController::class, 'index']);
+    Route::post('/quizzes', [QuizController::class, 'store']);
+    Route::put('/quizzes/{quizId}', [QuizController::class, 'update']);
+    Route::delete('/quizzes/{quizId}', [QuizController::class, 'destroy']);
+    Route::get('/quizzes/{quizId}/items', [QuizController::class, 'items']);
+    Route::post('/quizzes/{quizId}/items', [QuizController::class, 'addItem']);
+    Route::put('/quizzes/{quizId}/items/{questionId}', [QuizController::class, 'updateItem']);
+    Route::delete('/quizzes/{quizId}/items/{questionId}', [QuizController::class, 'removeItem']);
+    Route::post('/quizzes/{quizId}/assignments', [QuizController::class, 'assignClasses']);
+    Route::delete('/quizzes/{quizId}/assignments/{assignmentId}', [QuizController::class, 'removeAssignment']);
+    Route::get('/quizzes/{quizId}/answer-sheet', [QuizController::class, 'generateAnswerSheet']);
 });

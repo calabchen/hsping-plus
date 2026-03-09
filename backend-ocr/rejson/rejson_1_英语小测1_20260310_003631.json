@@ -1,0 +1,25 @@
+{
+    "testName": "英语小测1",
+    "startDate": "2026-03-09",
+    "startTime": "13:27:00",
+    "omrSheets": [
+        {
+            "sequence_number": 1,
+            "type": "单选",
+            "answer": "A",
+            "score": "1.00"
+        },
+        {
+            "sequence_number": 2,
+            "type": "判断",
+            "answer": "T",
+            "score": "2.00"
+        },
+        {
+            "sequence_number": 3,
+            "type": "多选",
+            "answer": "ABCD",
+            "score": "10.00"
+        }
+    ]
+}

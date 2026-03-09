@@ -1,0 +1,6 @@
+Pillow>=8.0.0
+numpy>=1.19
+requests>=2.25.0
+pypdfium2>=4.0.0
+# opencv optional: only needed if you extend detection methods (HoughCircles, etc.)
+opencv-python>=4.5

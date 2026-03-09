@@ -52,7 +52,6 @@ return new class extends Migration
         $table->id('question_id');
         $table->foreignId('teacher_id')->constrained('teachers', 'teacher_id')->cascadeOnDelete();
         $table->enum('type', ['单选', '多选', '判断', '主观']);
-        $table->text('content');
         $table->longText('options')->nullable();
         $table->text('answer')->nullable();
         $table->text('analysis')->nullable();

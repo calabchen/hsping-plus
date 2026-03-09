@@ -125,7 +125,7 @@ class ProfileController extends Controller
         // 由于数据库设置了级联删除(cascadeOnDelete)，删除user会自动删除：
         // 1. teachers 表中的记录
         // 2. teacher相关的questions、quizzes
-        // 3. quiz相关的quiz_question_items、quiz_assignments、submissions
+        // 3. quiz相关的questions、quiz_assignments、submissions
         // 4. submission相关的answer_details
         $user->delete();
 

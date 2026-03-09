@@ -1,14 +1,14 @@
-import './assets/main.css'
+import "./assets/main.css";
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import { authStore } from '@/stores/auth'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { authStore } from "@/stores/auth";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(router)
+app.use(router);
 
-authStore.initAuth()
+authStore.initAuth();
 
-app.mount('#app')
+app.mount("#app");

@@ -18,7 +18,7 @@
       </p>
 
       <p class="copyright-info">© 2025-2026 慧扫评 版权所有</p>
-      
+
       <h3 class="section-title">项目技术栈</h3>
 
       <p class="description-text tech-stack-text">
@@ -28,101 +28,84 @@
         <span class="tech-item">渲染组件: DHTMLX</span>
       </p>
     </div>
-    
-    </div>
+
+  </div>
 </template>
 
 <style scoped>
-/* ────────────────────────────────────────────────
-   1. 页面最外层容器
-   ──────────────────────────────────────────────── */
-.about {
-  margin: 0;
-  padding: 8px 0 24px;
-}
 
-/* ────────────────────────────────────────────────
-   2. 内容区域（居中 + 宽度约束）
-   ──────────────────────────────────────────────── */
-.about-container {
-  max-width: 960px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 20px;
-  color: var(--color-text);
-}
-
-/* ────────────────────────────────────────────────
-   3. 大标题（项目名称）
-   ──────────────────────────────────────────────── */
-.project-title {
-  margin: 0 0 16px;
-  text-align: center;
-  color: var(--color-heading);
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-/* ────────────────────────────────────────────────
-   4. 章节小标题
-   ──────────────────────────────────────────────── */
-.section-title {
-  margin: 0 0 14px;
-  color: var(--color-heading);
-  font-size: 20px;
-  border-bottom: 2px solid var(--color-border-hover);
-  padding-bottom: 8px;
-  display: inline-block;
-}
-
-/* ────────────────────────────────────────────────
-   5. 正文段落（通用描述文字）
-   ──────────────────────────────────────────────── */
-.description-text {
-  margin: 0 0 14px;
-  font-size: 16px;
-  line-height: 1.85;
-  text-indent: 2em;
-}
-
-/* ────────────────────────────────────────────────
-   6. 技术栈展示区域
-   ──────────────────────────────────────────────── */
-.tech-stack-text {
-  margin-bottom: 8px;
-  text-indent: 0;
-  padding: 10px 14px;
-  border-left: 3px solid var(--color-border-hover);
-  background: var(--color-background-soft);
-  border-radius: 6px;
-}
-
-/* ────────────────────────────────────────────────
-   7. 技术项
-   ──────────────────────────────────────────────── */
-.tech-item {
-  display: block;
-  line-height: 1.8;
-}
-
-/* ────────────────────────────────────────────────
-   8. 版权信息
-   ──────────────────────────────────────────────── */
-.copyright-info {
-  margin: 26px 0 0;
-  text-align: center;
-  font-size: 14px;
-  color: var(--color-text);
-  opacity: 0.7;
-}
-
-/* ────────────────────────────────────────────────
-   9. 响应式调整
-   ──────────────────────────────────────────────── */
-@media (min-width: 1024px) {
+  /* 页面外层容器 */
   .about {
-    padding-top: 12px;
+    margin: 0;
+    padding: 8px 0 24px;
   }
-}
+
+  /* 内容区域（居中 + 宽度约束） */
+  .about-container {
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+    color: var(--color-text);
+  }
+
+  /* 大标题（项目名称） */
+  .project-title {
+    margin: 0 0 16px;
+    text-align: center;
+    color: var(--color-heading);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* 章节小标题 */
+  .section-title {
+    margin: 0 0 14px;
+    color: var(--color-heading);
+    font-size: 20px;
+    border-bottom: 2px solid var(--color-border-hover);
+    padding-bottom: 8px;
+    display: inline-block;
+  }
+
+  /* 正文段落 */
+  .description-text {
+    margin: 0 0 14px;
+    font-size: 16px;
+    line-height: 1.85;
+    text-indent: 2em;
+  }
+
+  /* 技术栈展示区域 */
+  .tech-stack-text {
+    margin-bottom: 8px;
+    text-indent: 0;
+    padding: 10px 14px;
+    border-left: 3px solid var(--color-border-hover);
+    background: var(--color-background-soft);
+    border-radius: 6px;
+  }
+
+  /* 技术项 */
+  .tech-item {
+    display: block;
+    line-height: 1.8;
+  }
+
+  /* 版权信息 */
+  .copyright-info {
+    margin: 26px 0 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-text);
+    opacity: 0.7;
+  }
+
+  /* 响应式调整 */
+  @media (min-width: 1024px) {
+    .about {
+      padding-top: 12px;
+    }
+  }
 </style>
